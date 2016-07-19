@@ -1,0 +1,23 @@
+<h1><%= @survey.title() %></h1>
+
+<form action="/surveys/<%= @survey.id() %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="title"></label>
+  <input type="text" name="title" placeholder="New Title">
+  <button class="btn btn-default" type="submit">Edit Title</button>
+</form>
+
+<% if @survey.questions().any?()%>
+  <% @survey.questions().each() do |question| %>
+    <h5><a href="/questions/<%= question.id() %>"><%= question.question() %></a></h5>
+  <% end %>
+<% else %>
+  There are no questions for this survey yet.
+<% end %>
+<a href="/surveys/<%= @survey.id() %>/questions">Add a Question</a>
+
+<form action="/surveys/<%= @survey.id() %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button class="btn btn-default" type="submit">Delete</button>
+  <a class="btn btn-default" href="/">Back</a>
+</form>

@@ -1,0 +1,22 @@
+<h1>Add answers for <%= @question.question() %></h1>
+
+<% if @question.answers().any?()%>
+  <% @question.answers().each() do |answer| %>
+    <h5><%= answer.answer()  %></h5>
+  <% end %>
+<% else %>
+  There are no answers for this question yet.
+<% end %>
+
+<form action="/surveys/questions/<%= @question.id()%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="title"></label>
+  <input type="text" name="answer" placeholder="answer">
+  <button class="btn btn-default" type="submit">Add Answer</button>
+</form>
+
+<form action="/surveys/questions/<%= @question.id() %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button class="btn btn-default" type="submit">Delete</button>
+  <a class="btn btn-default" href="/surveys/questions/<%= @question.id() %>">Done</a>
+</form>

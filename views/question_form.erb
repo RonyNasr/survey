@@ -1,0 +1,16 @@
+<h1><%= @survey.title() %></h1>
+
+<% if @survey.questions().any?()%>
+  <% @survey.questions().each() do |question| %>
+    <h5><%= question.question()  %></h5>
+  <% end %>
+<% else %>
+  There are no questions for this survey yet.
+<% end %>
+
+<form action="/surveys/<%= @survey.id() %>/questions" method="post">
+  <label for="title"></label>
+  <input type="text" name="question" placeholder="question">
+  <button class="btn btn-default" type="submit">Add Question</button>
+</form>
+<a class="btn btn-default" href="/">back</a>

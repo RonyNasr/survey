@@ -1,0 +1,22 @@
+<h1><%= @question.question() %></h1>
+
+<form action="/questions/<%= @question.id() %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="title"></label>
+  <input type="text" name="question" placeholder="New Question">
+  <button class="btn btn-default" type="submit">Edit Question</button>
+</form>
+
+<% if @question.answers().any?()%>
+  <% @question.answers().each() do |answer| %>
+    <h5><a href="/answers/<%= answer.id() %>"><%= answer.answer() %></a></h5>
+  <% end %>
+<% else %>
+  There are no answers for this question yet.
+<% end %>
+
+<form action="/questions/<%= @question.id() %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button class="btn btn-default" type="submit">Delete</button>
+  <a class="btn btn-default" href="/surveys/<%= @question.survey_id() %>">Back</a>
+</form>

@@ -1,0 +1,14 @@
+<h1><%= @answer.answer() %></h1>
+
+<form action="/answers/<%= @answer.id() %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="title"></label>
+  <input type="text" name="answer" placeholder="New Answer">
+  <button type="submit">Edit Answer</button>
+</form>
+
+<form action="/answers/<%= @answer.id() %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button class="btn btn-default" type="submit">Delete</button>
+  <a class="btn btn-default" href="/questions/<%= @answer.question_id() %>">Back</a>
+</form>

@@ -1,0 +1,13 @@
+<h1>Add or Edit a Survey</h1>
+
+<% if @surveys.any?() %>
+  <% @surveys.each() do |survey| %>
+  <h5><a href="/surveys/<%= survey.id() %>"><%= survey.title() %></a></h5>
+
+  <% end %>
+<% else %>
+  <h5>We have no Surveys at the moment</h5>
+<% end %>
+
+<a href="/surveys/new" class="btn btn-default">Create a Survey</a>
+<a href="/takers/surveys" class="btn btn-default">Take a Survey</a>
